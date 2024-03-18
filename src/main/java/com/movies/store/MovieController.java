@@ -1,9 +1,12 @@
 package com.movies.store;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 //
@@ -21,8 +24,23 @@ public class MovieController {
     }
 
 
-@GetMapping("/movies")
-public List<Movie> getMovies(){
-    return movies;
-}
+    @GetMapping("/movies")
+    public List<Movie> getMovies(){
+        return movies;
+    }
+
+    
+    @GetMapping("/movies/{id}")
+    public Movie getMovieById(@PathVariable int id) {
+        for (Movie movie : movies) {
+            if (movie.getId() == id) {
+                return movie;
+            }
+        }
+        return null;
+        }
+    
+    
+
+
 }
